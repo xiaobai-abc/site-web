@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Head from "next/head";
 import { useEffect, useState, useMemo } from "react";
 import { cn } from "@/shadcn-ui/libs/utils";
 import styles from "./_index.module.css";
@@ -11,7 +10,6 @@ export default function Home(props) {
 
   useEffect(() => {
     const imgList = [...props.image];
-    console.log(imgList);
     // preloadImg(props.image);
   }, []);
 
@@ -40,6 +38,8 @@ export default function Home(props) {
 
   function RenderImage() {
     const list = props.image;
+
+    if (!list) return <>null</>;
     const prevIndex = (currentIndex - 1 + list.length) % list.length;
     const nextIndex = (currentIndex + 1) % list.length;
     const cnm =
@@ -77,9 +77,6 @@ export default function Home(props) {
 
   return (
     <>
-      {/* <Head>
-        <title>{props.title}</title>
-      </Head> */}
       <div
         className={cn(
           "box-border h-[100vh] relative z-1 overflow-hidden",
@@ -94,15 +91,6 @@ export default function Home(props) {
           ),
           [currentIndex]
         )}
-        {/* {props.image.map((src) => {
-          return (
-            <div
-              key={src}
-              className="h-screen w-full bg-cover bg-center bg-no-repeat sticky top-0 z-1"
-              style={{ backgroundImage: `url(${src})` }}
-            ></div>
-          );
-        })} */}
       </div>
     </>
   );
@@ -110,8 +98,15 @@ export default function Home(props) {
 
 export async function getStaticProps() {
   const fetch = require("../api/fetch");
-  const data = await fetch("/home");
 
+  const data = await fetch("/home");
+  // .then((res) =>
+  //   res.json()
+  // );
+
+  // axios.get("http://127.0.0.1:3000/api/home").then(resp=>{
+  //   console.log(resp.data)
+  // })
   return {
     props: data
   };
