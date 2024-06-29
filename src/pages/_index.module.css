@@ -1,0 +1,29 @@
+.down .next,
+.up .prev {
+  height: 100%;
+  z-index: 2;
+}
+
+.down .next img {
+  transform: translateY(0);
+}
+.down .cur img {
+  transform: translateY(-20%);
+}
+
+.next img {
+  transform: translateY(20%);
+}
+
+
+
+.up .prev img {
+  transform: translateY(0);
+}
+.up .cur img {
+  transform: translateY(20%);
+}
+
+.prev img {
+  transform: translateY(-20%);
+}

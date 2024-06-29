@@ -1,5 +1,5 @@
 const path = require("path");
-const URL = "http://127.0.0.1:3000/api";
+const URL = process.env.API_URL;
 
 function handler(resp) {
   if (resp && resp.code == 200) {

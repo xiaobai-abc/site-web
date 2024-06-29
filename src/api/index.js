@@ -7,7 +7,7 @@ const config = {
   // 设置超时时间
   timeout: 20 * 1000,
   // 跨域时候允许携带凭证
-  withCredentials: false,
+  withCredentials: false
 };
 
 const axios = new RequestHttp(config);

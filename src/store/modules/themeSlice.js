@@ -79,10 +79,16 @@ export const themeSlice = createSlice({
       }
     },
     // 主题颜色切换
-    setThemeColor(state, { payload }) {
-      console.log(state, payload);
-    },
-    getThemeColor(state, { payload }) {}
+    setThemeColor(state = initialState, { payload }) {
+      const colorType = colorList.map((color) => `theme-${color}`);
+      console.log(colorType);
+      state.themeColor = payload;
+      const classlist = document.body.classList;
+      colorType.forEach((c) => {
+        classlist.remove(c);
+      });
+      classlist.add(payload.themeColor);
+    }
   },
   // 异步请求数据
   extraReducers(builder) {}
