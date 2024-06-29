@@ -41,7 +41,7 @@ export default function Header() {
     <>
       <header className=" ">
         {/* <span className="text-xl font-sans font-bold">xiaobai-abc admin</span> */}
-        <NavCom></NavCom>
+        {/* <NavCom></NavCom> */}
         {/* <Menubar
           className={cn(
             "fixed -top-10 flex p-2 mt-2 h-fit mx-auto z-[50]",

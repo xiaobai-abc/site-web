@@ -37,7 +37,7 @@ export default function NavCom() {
   }, []);
 
   return (
-    <nav
+    <div
       className={cn(
         "fixed flex items-center top-8 left-[50%] translate-x-[-50%] z-10",
         "rounded-full overflow-hidden py-2 px-6 transition-width duration-500",
@@ -62,6 +62,9 @@ export default function NavCom() {
           return (
             <span
               key={item.key}
+              style={{
+                backgroundBlendMode: "color"
+              }}
               className={cn("ml-4 text-md text-foreground", "pulse")}
             >
               <Link href={item.key}>{item.title}</Link>
@@ -74,6 +77,6 @@ export default function NavCom() {
           </Button>
         </span>
       </div>
-    </nav>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 const path = require("path");
-const URL = process.env.API_URL;
+const URL = "https://xiaobai-abc.cn/api";
 
 function handler(resp) {
   if (resp && resp.code == 200) {

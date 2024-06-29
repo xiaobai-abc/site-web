@@ -1,0 +1,46 @@
+.write_video {
+  object-fit: cover;
+}
+.items {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.view.show {
+  position: fixed;
+}
+
+.view {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+}
+.description {
+  z-index: 1;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background-blend-mode: difference;
+  backdrop-filter: blur(8px);
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+.description span {
+  color: hsl(210deg 40% 98% / 90%);
+}
+.view:hover .description {
+  top: 0;
+  opacity: 1;
+}
+
+.container {
+  display: grid;
+  align-content: flex-start;
+  grid-template-columns: repeat(auto-fit, minmax(calc(1500px / 7), 1fr));
+  grid-auto-rows: 1fr;
+  gap: 20px;
+}
