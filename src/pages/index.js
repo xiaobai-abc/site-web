@@ -48,26 +48,23 @@ export default function Home(props) {
     return (
       <>
         <div className={cn(cnm, "top-0 h-0", styles.prev)}>
-          <Image
+          <img
             className="w-full h-full object-cover transition-all duration-1000"
             src={list[prevIndex]}
-            fill={true}
             alt=""
           />
         </div>
         <div className={cn(cnm, styles.cur)}>
-          <Image
+          <img
             className="w-full h-full object-cover transition-all duration-1000"
             src={list[currentIndex]}
-            fill={true}
             alt=""
           />
         </div>
         <div className={cn(cnm, "bottom-0 h-0", styles.next)}>
-          <Image
+          <img
             className="w-full h-full object-cover absolute bottom-0 transition-all duration-1000"
             src={list[nextIndex]}
-            fill={true}
             alt=""
           />
         </div>

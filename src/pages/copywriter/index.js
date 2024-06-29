@@ -70,8 +70,7 @@ export default function copywriterPage(props) {
 }
 
 export async function getServerSideProps() {
-  const fetch = require("@/api/fetch");
-
+  const fetch = require("../../api/fetch");
   const data = await fetch("/write");
 
   return {
