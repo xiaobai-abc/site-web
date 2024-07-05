@@ -13,7 +13,22 @@
     transform: scaleX(1);
   }
 }
-
+/* 放大 */
 .pulse:hover {
   animation: pulse 0.25s ease-in-out;
+}
+
+.slideDownAnimation {
+  animation: slideDown 0.25s  ;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0.2;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

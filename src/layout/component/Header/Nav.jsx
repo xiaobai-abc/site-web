@@ -2,16 +2,22 @@ import { Menubar, MenubarMenu, MenubarTrigger } from "@/shadcn-ui/ui/menubar";
 import { Button } from "@/shadcn-ui/ui/button";
 import { cn } from "@/shadcn-ui/libs/utils";
 import Link from "next/link";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Settings } from "lucide-react";
 import { useEffect, useState } from "react";
 import styles from "./index.module.css";
+import { useRouter } from "next/router";
 
-export default function NavCom() {
-  console.log("nav");
+const pageLinkColor = {
+  "/": "rgb(255, 255, 255, 0.8)"
+};
+
+export default function NavCom(props) {
+  const router = useRouter();
   const Nav = [
     {
       key: "/",
-      title: "首页"
+      title: "首页",
+      lineColor: "rgb(255, 255, 255, 0.2)"
     },
     {
       key: "/copywriter",
@@ -36,6 +42,10 @@ export default function NavCom() {
     return () => {};
   }, []);
 
+  function linkColor() {
+    return pageLinkColor[router.pathname];
+  }
+
   return (
     <div
       className={cn(
@@ -50,11 +60,13 @@ export default function NavCom() {
     >
       <div className="flex items-center">
         <img
-          className="w-[30px] h-[30px] object-cover overflow-hidden rounded-full"
+          className="w-8 h-8 object-cover overflow-hidden rounded-full flex-initial"
           src={require("@/assets/head.jpeg").default.src}
           alt="xiaobai"
         />
-        <span className="ml-4 text-md text-foreground">XIAOBAI</span>
+        <span className="ml-4 text-md text-foreground text-nowrap">
+          XIAOBAI
+        </span>
       </div>
 
       <div className={cn("flex items-center")}>
@@ -62,18 +74,37 @@ export default function NavCom() {
           return (
             <span
               key={item.key}
+              className={cn("ml-4 text-md", "pulse", "text-foreground")}
               style={{
-                backgroundBlendMode: "color"
+                color: linkColor()
               }}
-              className={cn("ml-4 text-md text-foreground", "pulse")}
             >
               <Link href={item.key}>{item.title}</Link>
             </span>
           );
         })}
         <span className={cn("ml-4")}>
-          <Button size="icon" className="mr-4 w-8 h-8 rounded-full ">
-            <Sun size={"1rem"} />
+          <Button
+            size="icon"
+            variant="outline"
+            className="w-8 h-8 rounded-full dc"
+            onClick={props.onThemeToggle}
+          >
+            {props.themeMode === "dark" ? (
+              <Moon size={"1rem"} />
+            ) : (
+              <Sun size={"1rem"} />
+            )}
+          </Button>
+        </span>
+        <span className={cn("ml-4")}>
+          <Button
+            variant="outline"
+            size="icon"
+            className="w-8 h-8 rounded-full"
+            onClick={props.onHandleSetting}
+          >
+            <Settings size={"1rem"} className="dc" />
           </Button>
         </span>
       </div>

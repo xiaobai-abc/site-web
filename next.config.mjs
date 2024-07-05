@@ -1,15 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  images : {
-    remotePatterns : [
+  images: {
+    remotePatterns: [
       {
-        protocol : 'https',
-        hostname : 'xiaobai-abc.cn',
-        port : '',
-        pathname : '/static/**'
+        protocol: "https",
+        hostname: "xiaobai-abc.cn",
+        port: "",
+        pathname: "/static/**"
       }
     ]
+  },
+  env: {
+    APP_ENV: process.env.APP_ENV
   }
 };
 

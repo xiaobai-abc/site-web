@@ -1,7 +1,8 @@
+import { cn } from "@/shadcn-ui/libs/utils";
 import { Dialog, DialogContent } from "@/shadcn-ui/ui/dialog-loose";
 import { forwardRef, useState, useImperativeHandle, useEffect } from "react";
 
-function DialogContentComponent({ children, ...props }, ref) {
+function DialogContentComponent({ children, className, ...props }, ref) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ function DialogContentComponent({ children, ...props }, ref) {
   }));
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent>{children}</DialogContent>
+      <DialogContent className={cn(className)}>{children}</DialogContent>
     </Dialog>
   );
 }
