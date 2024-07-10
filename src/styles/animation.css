@@ -19,7 +19,7 @@
 }
 
 .slideDownAnimation {
-  animation: slideDown 0.25s  ;
+  animation: slideDown 0.25s;
 }
 
 @keyframes slideDown {
@@ -30,5 +30,20 @@
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+.fedaTopAnimation {
+  animation: fedaTop 1.25s forwards;
+}
+
+@keyframes fedaTop {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-45px);
+    opacity: 0;
   }
 }

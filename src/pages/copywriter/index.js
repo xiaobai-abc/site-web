@@ -5,6 +5,9 @@ import DialogContent from "./_component/DialogContent";
 import { useEffect, useRef, useState } from "react";
 import axios from "@/api";
 
+let observer = null;
+const observerTarget = new WeakMap();
+
 export default function copywriterPage(props) {
   const dialogRef = useRef(null);
   const [currentData, setCurrentData] = useState(null);
@@ -15,6 +18,28 @@ export default function copywriterPage(props) {
     axios.get("/write").then((resp) => {
       setWriterList(resp.data.list);
     });
+
+    // 创建 Intersection Observer 实例
+    observer = new IntersectionObserver(
+      (entries, observer) => {
+        // entries 是观察到的元素的信息数组
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // 当目标元素进入视口时触发的操作
+            const targetMap = observerTarget.get(entry.target);
+            targetMap.handShow?.(); //操作元素展示
+            // 这里可以执行加载和渲染的操作，例如替换元素内容、加载数据等
+            // 例如：fetchDataAndRender();
+            // observer.unobserve(entry.target); // 可选：一次性观察，加载后取消观察
+          }
+        });
+      },
+      {
+        root: null, // 观察者的根元素，默认为视口
+        rootMargin: "0px", // 根元素的边距
+        threshold: 0.5 // 当元素可见比例达到 50% 时触发回调
+      }
+    );
   }, []);
 
   function onItemsClick(item) {
@@ -28,25 +53,11 @@ export default function copywriterPage(props) {
         <div className={cn(styles.container)}>
           {writerList.map((item) => {
             return (
-              <div
-                onClick={() => onItemsClick(item)}
+              <VideoBlock
+                item={item}
+                onItemsClick={onItemsClick}
                 key={item.id}
-                className={cn(styles.items)}
-              >
-                <AspectRatio ratio={3 / 4}>
-                  <div className={cn(styles.view)}>
-                    <video
-                      src={item.media}
-                      className={cn("object-cover h-full", styles.write_video)}
-                    ></video>
-                    <div className={cn(styles.description)}>
-                      <p className="h-full w-full overflow-hidden flex items-center">
-                        <span>{item.describe}</span>
-                      </p>
-                    </div>
-                  </div>
-                </AspectRatio>
-              </div>
+              ></VideoBlock>
             );
           })}
         </div>
@@ -86,6 +97,51 @@ export default function copywriterPage(props) {
           </div>
         </div>
       </DialogContent>
+    </div>
+  );
+}
+
+// 视频项 props = {item, onVideoLoaded}
+function VideoBlock(props) {
+  const item = props.item;
+  const videoRef = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+  const [ifShow, setIfShow] = useState(false);
+
+  useEffect(() => {
+    observerTarget.set(videoRef.current, {
+      handShow() {
+        setIfShow(true);
+      }
+    });
+    observer.observe(videoRef.current);
+  }, []);
+
+  return (
+    <div
+      onClick={() => props.onItemsClick?.(item)}
+      key={item.id}
+      className={cn(styles.items)}
+      ref={videoRef}
+    >
+      {/* 比例 */}
+      <AspectRatio ratio={3 / 4}>
+        {/* video 加载完成展示 */}
+        {ifShow && (
+          <div className={cn(styles.view, loaded ? styles.loaded : "")}>
+            <video
+              src={item.media}
+              className={cn("object-cover h-full", styles.write_video)}
+              onLoadedData={() => setLoaded(true)}
+            ></video>
+            <div className={cn(styles.description)}>
+              <p className="h-full w-full overflow-hidden flex items-center">
+                <span>{item.describe}</span>
+              </p>
+            </div>
+          </div>
+        )}
+      </AspectRatio>
     </div>
   );
 }

@@ -11,11 +11,12 @@ export default function HomePage(props) {
   });
 
   return (
+    // #c7ecee, #a5b1c2
     <div
       className={cn("h-[100vh] w-full")}
       style={{
         backgroundImage:
-          "linear-gradient(-225deg, #231557 0%, #43107a 29%, #FF1361 100%)"
+          "linear-gradient(to bottom,  #d5eaf4, #b2d8e6, #92b6cb, #7394af)"
       }}
     >
       <canvas ref={canvasRef} className="h-full w-full"></canvas>

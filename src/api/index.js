@@ -1,6 +1,7 @@
 import RequestHttp from "./http";
 
-const URL = "http://127.0.0.1:3000/api";
+const URL = process.env.NEXT_PUBLIC_API_URL;
+
 const config = {
   // 默认地址
   baseURL: URL,
