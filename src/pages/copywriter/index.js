@@ -48,8 +48,8 @@ export default function copywriterPage(props) {
   }
 
   return (
-    <div className="w-[85vw] mx-auto pt-[100px]">
-      <div className="w-full">
+    <div className="w-[85vw] lg:w-[80vw] xl:w-[75vw] mx-auto pt-[100px]">
+      <div className="w-full pb-14">
         <div className={cn(styles.container)}>
           {writerList.map((item) => {
             return (
@@ -62,7 +62,6 @@ export default function copywriterPage(props) {
           })}
         </div>
       </div>
-      <div className="h-[1500px]"></div>
       <DialogContent ref={dialogRef} className="p-0 bg-transparent">
         <div className={cn("w-[80vw] p-0 ")}>
           <div

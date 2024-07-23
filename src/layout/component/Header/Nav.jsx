@@ -64,7 +64,7 @@ export default function NavCom(props) {
           src={require("@/assets/head.jpeg").default.src}
           alt="xiaobai"
         />
-        <span className="ml-4 text-md text-foreground text-nowrap">
+        <span className="ml-4 text-md text-foreground text-nowrap font-bold nav_title">
           XIAOBAI
         </span>
       </div>
