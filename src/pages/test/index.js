@@ -13,7 +13,7 @@ export default function TestPage() {
 }
 
 export async function getServerSideProps() {
-  const fetch = require("../../api/fetch");
+  // const fetch = require("../../api/fetch");
 
   // const mdHtml = await fetch("/home/md");
 

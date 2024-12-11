@@ -3,7 +3,7 @@ import { cn } from "@/shadcn-ui/libs/utils";
 import styles from "./_index.module.css";
 import DialogContent from "./_component/DialogContent";
 import { useEffect, useRef, useState } from "react";
-import axios from "@/api";
+// import axios from "@/api";
 
 let observer = null;
 const observerTarget = new WeakMap();
@@ -15,9 +15,9 @@ export default function copywriterPage(props) {
   // const writerList = props.data;
 
   useEffect(() => {
-    axios.get("/write").then((resp) => {
-      setWriterList(resp.data.list);
-    });
+    // axios.get("/write").then((resp) => {
+    //   setWriterList(resp.data.list);
+    // });
 
     // 创建 Intersection Observer 实例
     observer = new IntersectionObserver(
@@ -50,6 +50,9 @@ export default function copywriterPage(props) {
   return (
     <div className="w-[85vw] lg:w-[80vw] xl:w-[75vw] mx-auto pt-[100px]">
       <div className="w-full pb-14">
+        <div>
+          "zxczxczxczx"
+        </div>
         <div className={cn(styles.container)}>
           {writerList.map((item) => {
             return (

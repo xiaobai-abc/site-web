@@ -51,10 +51,10 @@ class RequestHttp {
         } else {
           switch (error.code) {
             case "ECONNABORTED":
-              Message.error("终止连线~~~");
+              // Message.error("终止连线~~~");
               break;
             case "ERR_NETWORK":
-              Message.error("网络异常~~~");
+              // Message.error("网络异常~~~");
               break;
           }
         }

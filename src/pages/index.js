@@ -25,8 +25,8 @@ export default function HomePage(props) {
 }
 
 export async function getStaticProps(context) {
-  const fetch = require("../api/fetch");
-  const resp = await fetch("/");
+  // const fetch = require("../api/fetch");
+  // const resp = await fetch("/");
   const URL = process.env.API_URL;
   return {
     props: {

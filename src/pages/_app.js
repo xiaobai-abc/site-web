@@ -16,8 +16,8 @@ export default function App({ Component, pageProps }) {
   // Component.Layout ?? ((page) => page);
 
   useEffect(() => {
-    CursorStyle();
-    loadlive2d()
+    CursorStyle(); //鼠标点击特效
+    // loadlive2d()
   }, []);
 
   return (
@@ -30,9 +30,7 @@ export default function App({ Component, pageProps }) {
         <Layout>
           <Component {...pageProps} />
         </Layout>
-        {/* {getLayout(<Component {...pageProps} />)} */}
       </Provider>
-      {/* <Script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></Script> */}
     </>
   );
 }
